@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Track - RecordDB</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<h1>RecordDB</h1>
+<h2>Track</h2>
+
+{% if album_list %}
+    {% for a in album_list %}
+        <h3>{{ a.album_name }}</h3>
+    {% endfor %}
+{% else %}
+    <p>Nothing here.</p>
+{% endif %}
+
+<table width="500">
+    <tr>
+        {% if track_list %}
+            {% for t in track_list %}
+                <td>{{ t.track_name }}</td><td width="40"><a href="/RecordDB/edit_track/{{ t.id }}">Edit</a></td><td td width="40"><a href="/RecordDB/delete_track/{{ t.id }}">Delete</a></td>
+            {% endfor %}
+        {% else %}
+            <p>Nothing here.</p>
+        {% endif %}
+    </tr>
+</table>
+</body>
+</html>

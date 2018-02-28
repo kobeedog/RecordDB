@@ -1,0 +1,61 @@
+h1 {
+   font-family:"arial";
+   font-size: 24px;
+}
+
+h2 {
+   font-family:"arial";
+   font-size: 18px;
+}
+
+h3 {
+   font-family:"arial";
+   font-size: 15px;
+}
+
+a:link {
+    text-decoration: none;
+    font-family:"arial";
+    font-size: 14px;
+}
+
+a:visited {
+    text-decoration: none;
+    font-family:"arial";
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: underline;
+    font-family:"arial";
+    font-size: 14px;
+}
+
+a:active {
+    text-decoration: underline;
+    font-family:"arial";
+}
+
+.test {
+   font-family:"arial";
+   font-size: 40px;
+}
+
+p {
+   font-family:"arial";
+   font-size: 14px;
+}
+
+.td {
+   font-family:"arial";
+   font-size: 14px;
+}
+
+label {
+    font-family:"arial";
+}
+
+body {
+   font-family:"arial";
+   font-size: 14px;
+}

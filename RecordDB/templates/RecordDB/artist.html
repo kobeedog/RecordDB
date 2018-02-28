@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Artist - RecordDB</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<h1>RecordDB</h1>
+<h2>Artist</h2>
+{% if artist_list %}
+    {% for a in artist_list %}
+        <a href="/RecordDB/artists">/Artists</a>
+        <h3>{{ a.artist_name }}</h3>
+        <p></p>
+        <a href="/RecordDB/add_album/{{ a.id }}">Add Album</a>
+    {% endfor %}
+    <ul>
+    {% for a in album_list %}
+        <li><a href="/RecordDB/album/{{ a.id }}/{{ a.artist_id }}">{{ a.album_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Nothing here.</p>
+{% endif %}
+</body>
+</html>

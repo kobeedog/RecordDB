@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Album - RecordDB</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<h1>RecordDB</h1>
+<h2>Album</h2>
+{% if album_list %}
+    {% for a in album_list %}
+        {% for artist in artist_list %}
+            <a href="/RecordDB/artist/{{ artist.id }}">/{{ artist.artist_name }}</a>
+            <br>
+        {% endfor %}
+        <h3>{{ a.album_name }}</h3>
+        <table border="0" width="600">
+            <tr>
+                <td width="225" valign="top">
+                    <img src="{% static 'images/covers/' %}{{ a.cover_art }}" >
+                    <br>
+                    Year:&nbsp;{{ a.year }}
+                </td>
+                <td valign="top">
+                    <a href="/RecordDB/add_track/{{ a.id }}">Add Track</a>
+                    <ul>
+                    {% for t in track_list %}
+                        <li><a href="/RecordDB/track/{{ t.id }}/{{ t.album_id }}">{{ t.track_name }}</a></li>
+                    {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </table>
+     {% endfor %}
+{% else %}
+    <p>Nothing here.</p>
+{% endif %}
+</body>
+</html>

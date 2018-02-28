@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Genres - RecordDB</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<h1>RecordDB</h1>
+<h2>Genres</h2>
+<a href="add_genre">Add Genre</a>
+{% if genre_list %}
+    <ul>
+    {% for genre in genre_list %}
+        <li><a href="/RecordDB/genres/{{ genre.id }}/">{{ genre.genre_name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Nothing here.</p>
+{% endif %}
+</body>
+</html>
