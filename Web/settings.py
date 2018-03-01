@@ -78,8 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'recorddb',
-		'USER': 'dotnetuser',
-		'PASSWORD': 'specop-mp5sd',
+        'USER': 'xxx',
+        'PASSWORD': 'xxx',
         'HOST': '127.0.0.1',
     }
 }
