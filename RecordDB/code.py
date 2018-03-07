@@ -19,10 +19,8 @@ class FileIO:
     def save_file(self, file):
         fs = FileSystemStorage()
         filename = fs.save("Temp/" + file.name, file)
-        print(filename)
         ext = str.split(filename, ".")[1]
         unique_file_name = str(UniqueIdentifier().generete_uuid()) + "." + ext
-        print(unique_file_name)
         self.copy_file(filename, unique_file_name)
         img = Imaging(220, 220)
         img.create_thumbnail('RecordDB/static/images/covers/' + unique_file_name, 'RecordDB/static/images/covers/' + unique_file_name)

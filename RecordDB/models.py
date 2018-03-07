@@ -41,4 +41,11 @@ class Track(models.Model):
         managed = False
         db_table = 'track'
 
+class Configuration(models.Model):
+    id = models.IntegerField(primary_key=True)
+    parameter = models.CharField(max_length=45)
+    value = models.CharField(max_length=100)
 
+    class Meta:
+        managed = False
+        db_table = 'configuration'

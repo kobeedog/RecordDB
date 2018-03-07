@@ -7,6 +7,7 @@ from .models import Genre
 from .models import Artist
 from .models import Album
 from .models import Track
+from .models import Configuration
 from .forms import GenreForm
 from .forms import ArtistForm
 from .forms import AlbumForm
@@ -14,8 +15,11 @@ from .forms import TrackForm
 from RecordDB.code import FileIO
 
 def index(request):
+    config_list = Configuration.objects.order_by('-parameter')
     template = loader.get_template('RecordDB/index.html')
-    context = None
+    context = {
+        'config_list': config_list,
+    }
     return HttpResponse(template.render(context, request))
 
 def genres(request):
@@ -90,14 +94,6 @@ def add_album(request, id):
             a.date_added = datetime.now()
             a.save()
 
-            artistlist = Artist.objects.filter(id=id)
-            albumlist = Album.objects.filter(artist_id=id)
-            template = loader.get_template('RecordDB/artist.html')
-            context = {
-                'artist_list': artistlist,
-                'album_list': albumlist,
-            }
-            #return HttpResponse(template.render(context, request))
             return redirect('/RecordDB/artist/' + str(id))
     else:
         form = AlbumForm()

@@ -9,6 +9,14 @@
 <body>
 <h1>RecordDB</h1>
 <h2>Home</h2>
+{% if config_list %}
+    {% for config in config_list %}
+        {% if config.parameter == 'Version' %}
+             {{ config.parameter }} &nbsp; {{ config.value }}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+<p></p>
 <a href="/RecordDB/artists">Artists</a>
 <br>
 <a href="/RecordDB/genres">Genres</a>
