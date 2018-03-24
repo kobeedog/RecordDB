@@ -1,3 +1,11 @@
 from django.test import TestCase
+from code import External
 
-# Create your tests here.
+def test_external():
+    ex = External()
+
+def main():
+    pass
+
+main()
+

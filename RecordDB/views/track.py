@@ -7,6 +7,7 @@ from RecordDB.models import Artist
 from RecordDB.models import Album
 from RecordDB.models import Genre
 from RecordDB.models import Track
+from RecordDB.code import External
 
 def add_track(request, id):
     if request.method == "POST":
@@ -58,11 +59,34 @@ def add_track(request, id):
                 'album_list': album_list,
                 'track_list': track_list,
             }
-            #return HttpResponse(template.render(context, request))
             return redirect('/RecordDB/album/' + str(id) + "/" + str(artist_id))
     else:
         form = TrackForm()
-        return render(request, 'RecordDB/track_form.html', {'form': form})
+        ex = External()
+
+        album_list = Album.objects.filter(id=id)
+        artist_id = album_list[0].artist.id
+        artist_name = album_list[0].artist.artist_name
+        album_name = album_list[0].album_name
+
+        tracks = ex.get_tracks(artist_name, album_name)
+        if len(tracks) > 0:
+
+            for track in tracks:
+                if len(track) > 0:
+                    # before we save, we should make sure the
+                    # does not already exist for this album
+                    existing_track = Track.objects.filter(track_name=track).filter(album_id=id)
+                    # if we found no matching records, then save
+                    if len(existing_track) == 0:
+                        t = Track()
+                        t.track_name = track
+                        t.album = Album.objects.filter(id=id)[0]
+                        t.save()
+
+            return redirect('/RecordDB/album/' + str(id) + "/" + str(artist_id))
+        else:
+            return render(request, 'RecordDB/track_form.html', {'form': form})
 
 def track(request, id, album_id):
     albumlist = Album.objects.filter(id=album_id)

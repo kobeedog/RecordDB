@@ -5,7 +5,7 @@ from RecordDB.forms import GenreForm
 from RecordDB.models import Genre
 
 def genres(request):
-    genre_list = Genre.objects.order_by('-id')
+    genre_list = Genre.objects.order_by('genre_name')
     template = loader.get_template('RecordDB/genres.html')
     context = {
         'genre_list': genre_list,
